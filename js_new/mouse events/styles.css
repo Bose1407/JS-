@@ -1,0 +1,19 @@
+
+#emoji{
+    font-size: 3rem;
+    text-align: center;
+    width: 200px;
+    height:50vh;
+    
+   
+
+}
+button{
+    display: block;
+    align-items: center;
+    margin-top: 10%;
+    margin-left: 40%;
+    background-color: rgb(97, 255, 97);
+    border: none;
+    box-shadow: 5px 5px 5px black;
+}

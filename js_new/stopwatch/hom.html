@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body{
+            background-color: hsl(0, 0%, 80%);
+            font-family: verdana;
+            margin: 0;
+            padding: 0;;
+        }
+        h1{
+            text-align: center;
+            background-color: hsla(0, 0%, 60%);
+            margin-top: 0;
+            padding: 15px;
+        }
+        #display{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:5%;
+            font-size: 3rem;
+            font-family: monospace;
+
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:3%;
+            gap: 10px;
+            padding: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: none;
+            
+        }
+        
+    .hero{
+        margin-top: 5%;
+        border:5px solid black;
+        margin-left: 10%;
+        margin-right: 10%;
+        background-color: white;
+        margin-top: 15%;
+    }
+    #startbtn{
+        background-color: rgb(32, 255, 32);
+        font-size: 1.4rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+       
+    }
+    #startbtn:hover{
+        background-color: rgb(23, 214, 23);
+    }
+    #stopbtn{
+        background-color: rgb(247, 75, 75);
+        font-size: 1.4rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    #stopbtn:hover{
+        background-color: rgb(255, 0, 0);
+    }
+    #resettbtn{
+        background-color: rgb(27, 179, 255);
+        font-size: 1.4rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    #resettbtn:hover{
+        background-color: rgb(20, 146, 255);
+    }
+    </style>
+</head>
+<body>
+    <h1>Stopwatch</h1>
+<div class="hero">
+    <div id="display">
+        <div>00:00:00</div><br>
+    </div>
+    <div class="button">
+        <button id="startbtn" onclick="start()">Start</button>
+        <button id="stopbtn" onclick="stop()">Stop</button>
+        <button id="resettbtn" onclick="reset()">Reset</button>
+        <p id="p"></p>
+    </div>
+</div>
+    <script>
+        let dis_field = document.getElementById("display");
+        let timer_id=null;
+        let sec=0;
+        let min=0;
+        let hrs=0;
+        function main(){
+            sec++;
+            if(sec>60){
+                min++;
+                sec=0;
+                if(min>60){
+                    hrs++;
+                    mins=0;
+                }
+            }
+            const h = hrs < 10 ? "0"+ hrs : hrs;
+            const m = min < 10 ? "0"+ min : min;
+            const s = sec < 10 ? "0"+ sec : sec;
+
+            let disp_string=`${h}:${m}:${s}`;
+
+
+            dis_field.textContent=disp_string;
+
+        }
+        function start(){
+            if(timer_id!=null){
+                clearInterval(timer_id);
+            }
+            timer_id=setInterval(main,1000);
+        }
+        function stop(){
+            if(timer_id){
+                clearInterval(timer_id);
+            }
+        }
+        function reset(){
+            clearInterval(timer_id);
+             sec=0;
+             min=0;
+             hrs=0;
+            dis_field.innerHTML="00:00:00";
+
+        }
+
+    </script>
+    
+</body>
+</html>

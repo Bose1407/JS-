@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mybtns{
+            font-size: 2rem;
+            background-color: rgb(65, 139, 229);
+            margin: 20px;
+            border: 0cap;
+        }
+        .incfsize{
+            font-size: 5rem;
+        }
+        .change{
+            background-color: hsl(0, 0%, 40%);
+            color: black;
+        }
+        .decsiz{
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div><button class="mybtns">Button1</button><br><button class="mybtns">Button2</button><br><button class="mybtns">Button3</button><br><button class="mybtns">Button4</button></div>
+    <script>
+        const btns= document.querySelectorAll(".mybtns");
+        btns.forEach((btn)=>{
+            btn.addEventListener("click",event=>{
+                event.target.classList.toggle("incfsize");
+            }
+            )
+            btn.addEventListener("mouseover",event=>{
+                if(event.target.classList.contains("incfsize")){
+                    event.target.classList.add("decsiz");
+                }
+                event.target.classList.add("change");
+            }
+            )
+            btn.addEventListener("mouseout",event=>{
+                event.target.classList.remove("change");
+            }
+            )
+            
+        })
+    </script>
+</body>
+</html>

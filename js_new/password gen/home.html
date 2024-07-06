@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+        .main {
+            margin-top: 20px;
+        }
+        label, .form-check-label {
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .form-check {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Password Generator</h1>
+        <div class="main">
+            <input type="text" id="passfield" name="passfield" placeholder="Enter the length of your password">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="lower" />
+                <label class="form-check-label">Include Lowercase?</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="upper" />
+                <label class="form-check-label">Include Uppercase?</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="num" />
+                <label class="form-check-label">Include Numbers?</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="symbol" />
+                <label class="form-check-label">Include Symbols?</label>
+            </div>
+            <button type="button" onclick="generate()">Generate</button>
+            <button type="button" onclick="clearPassword()">Clear</button>
+        </div>
+    </div>
+    <script>
+        function generate() {
+            const max_val = parseInt(document.getElementById("passfield").value);
+            const lower_chk = document.getElementById("lower");
+            const upper_chk = document.getElementById("upper");
+            const num_chk = document.getElementById("num");
+            const sym_chk = document.getElementById("symbol");
+
+            const lower_char = 'abcdefghijklmnopqrstuvwxyz';
+            const upper_char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const num = '1234567890';
+            const sym = '!@#$%^&*';
+
+            let allowed_char = "";
+            let password = "";
+
+            allowed_char += lower_chk.checked ? lower_char : "";
+            allowed_char += upper_chk.checked ? upper_char : "";
+            allowed_char += num_chk.checked ? num : "";
+            allowed_char += sym_chk.checked ? sym : "";
+
+            if (max_val <= 0 || isNaN(max_val)) {
+                document.getElementById("passfield").value = "Enter a valid number";
+            } else {
+                for (let i = 0; i < max_val; i++) {
+                    let random = Math.floor(Math.random() * allowed_char.length);
+                    password += allowed_char[random];
+                }
+                document.getElementById("passfield").value = password;
+            }
+        }
+
+        function clearPassword() {
+            document.getElementById("passfield").value = "";
+        }
+    </script>
+</body>
+</html>

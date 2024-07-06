@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon🐺 Finder</title>
+    <style>
+        body {
+            background-color: hsl(0, 0%, 90%);
+            font-family: verdana;
+            font-weight: bold;
+        }
+        input {
+            width: 250px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #divsec {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10%;
+            background-color: white;
+            margin-left: 35%;
+            margin-right: 35%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            padding: 30px;
+            box-shadow: 2px 2px 5px hsl(0, 0%, 30%);
+        }
+        img {
+            display: none;
+            width: 150px;
+            height: 150px;
+        }
+        #inputfield{
+            font-size: 1.2rem;
+            width: 350px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        button{
+            margin-top: 5%;
+            padding: 10px;
+            font-size: 1.2rem;
+            background-color: lightgreen;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover{
+            background-color: hsl(120, 73%, 55%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Pokemon🐺 Finder</h1>
+    <div id="divsec">
+        <input type="text" placeholder="Search the pokemon by name" id="inputfield"><br>
+        <button id="searchpokemon" onclick="fetchData()">Search</button>
+        <p id="p"></p>
+        <img src="" alt="pokeimg" id="pokeimg">
+    </div>
+    
+    <script>
+        async function fetchData() {
+            const input = document.getElementById("inputfield").value.toLowerCase(); // Convert input to lowercase
+            const para = document.getElementById("p");
+            const imgfield = document.getElementById("pokeimg");
+
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
+                if (!response.ok) {
+                    throw new Error('Pokemon not found!');
+                }
+                const data = await response.json();
+                const pokemonSprite = data.sprites.front_default;
+
+                imgfield.src = pokemonSprite;
+                imgfield.style.display = "block";
+                para.textContent = ""; 
+            } catch (error) {
+                para.textContent = "Invalid Pokemon Name";
+                imgfield.style.display = "none"; 
+                console.error('Error fetching Pokemon:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    background-color: hsl(0, 0%, 90%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 50%);
+}
+
+input {
+    font-size: 1.1rem;
+    width: 100%; /* Ensure input field spans full width of parent */
+    padding: 8px;
+    margin-bottom: 10px; /* Add some spacing between input and button */
+}
+
+button {
+    font-size: 1.05rem;
+    background-color: rgb(116, 242, 116);
+    border: none;
+    padding: 8px 20px; /* Adjust padding for better button appearance */
+    cursor: pointer; /* Add pointer cursor on hover */
+}
+
+button:hover {
+    background-color: rgb(49, 211, 49);
+}
+
+#result {
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #1cb5e0, orange);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 50%);
+}
+
+#result h1,
+#result h4 {
+    margin: 5px 0; 
+}
